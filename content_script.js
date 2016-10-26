@@ -1,60 +1,63 @@
-debugger;
-console.log(document);
-const video = document.getElementsByTagName('video');
+const video = document.getElementsByTagName('video')[0];
 const normalPlaybackRate = 1;
 const videoStart = 0;
-const videoDuration = video.duration;
-
+debugger;
 const speedTick = 0.05;
 const abTick = 0.2;
 
-var aValue = 0;
-var bValue = videoDuration;
+var currentState = {
+    aValue: 0,
+    bValue:  video.duration,
+    playbackRate: normalPlaybackRate
+};
 
 function setA() {
-    aValue = video.currentTime;
+    currentState.aValue = video.currentTime;
 }
 
 function setB() {
-    bValue = video.currentTime;
+    currentState.bValue = video.currentTime;
 }
-
 
 function setAMinus() {
-    aValue -= abTick;
+    currentState.aValue -= abTick;
 }
 
-
 function setAPlus() {
-    aValue += abTick;
+    currentState.aValue += abTick;
 }
 
 function setBMinus() {
-    bValue -= abTick;
+    currentState.bValue -= abTick;
 }
 
-
 function setBPlus() {
-    bValue += abTick;
+    currentState.bValue += abTick;
 }
 
 function speedDown() {
     video.playbackRate -= speedTick;
+    setCurrentPlaybackRate();
 }
 
 function speedUp() {
     video.playbackRate += speedTick;
+    setCurrentPlaybackRate();
 }
 
 function resetAB() {
-    aValue = videoStart;
-    bValue = videoDuration;
+    currentState.aValue = videoStart;
+    currentState.bValue =  video.duration;
 }
 
 function resetSpeed() {
     video.playbackRate = normalPlaybackRate;
+    setCurrentPlaybackRate();
 }
 
+function setCurrentPlaybackRate() {
+    currentState.playbackRate = video.playbackRate;
+}
 
 var keyActions = {
     "q": setA,
@@ -71,17 +74,27 @@ var keyActions = {
 
 function addKeyEventListener() {
     document.addEventListener("keydown", e => {
-        console.log(e);
         var key = e.key;
         var action = keyActions[key];
         if (action) {
             keyActions[key]();
+            chrome.runtime.sendMessage(currentState);
         }
     });
 }
 
+function addTimeUpdateEvent() {
+    debugger;
+    video.addEventListener('timeupdate',
+        () => {
+            if (video.currentTime > currentState.bValue) {
+                video.currentTime = currentState.aValue;
+            }
+        });
+}
 function init() {
     addKeyEventListener();
+    addTimeUpdateEvent();
 }
 
 init();
