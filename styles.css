@@ -1,0 +1,9 @@
+div#GUITAR_TRAINER_STATE_id {
+    width: 330px;
+    height: 20px;
+    fontSize: 'larger';
+    color: #EEE;
+    background-color: black;
+    z-index: 1000;
+    position: relative;
+}
