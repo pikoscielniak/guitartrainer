@@ -2,7 +2,7 @@ const video = document.getElementsByTagName('video')[0];
 const normalPlaybackRate = 1;
 const videoStart = 0;
 const speedTick = 0.05;
-const abTick = 0.2;
+const abTick = 0.1;
 const ENABLED_STATE = "ENABLED";
 const STATE_KEY = "GUITAR_TRAINER_STATE";
 const elemId = STATE_KEY + "_id";
@@ -93,7 +93,7 @@ function updateGui() {
     showGuiElement();
     var valA = roundTo2Places(currentState.aValue);
     var valB = roundTo2Places(currentState.bValue);
-    if(isNaN(valB)) {
+    if (isNaN(valB)) {
         valB = "\u221E";
     }
     var html = (`A: ${valA} B: ${valB} Speed: ${video.playbackRate}`);
@@ -185,6 +185,7 @@ function changeA(val) {
     if (newValue < 0) {
         newValue = 0;
     }
+    if (newValue >= currentState.bValue) return;
     currentState.aValue = newValue;
 }
 
@@ -194,6 +195,7 @@ function changeB(val) {
     if (newValue > video.duration) {
         newValue = video.duration;
     }
+    if (newValue <= currentState.aValue) return;
     currentState.bValue = newValue;
 }
 
