@@ -93,6 +93,9 @@ function updateGui() {
     showGuiElement();
     var valA = roundTo2Places(currentState.aValue);
     var valB = roundTo2Places(currentState.bValue);
+    if(isNaN(valB)) {
+        valB = "\u221E";
+    }
     var html = (`A: ${valA} B: ${valB} Speed: ${video.playbackRate}`);
     guiElement.innerHTML = html;
 }
