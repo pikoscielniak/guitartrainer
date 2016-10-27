@@ -44,11 +44,11 @@ function setBPlus() {
 }
 
 function speedDown() {
-    setCurrentPlaybackRate(-speedTick);
+    changeCurrentPlaybackRate(-speedTick);
 }
 
 function speedUp() {
-    setCurrentPlaybackRate(speedTick);
+    changeCurrentPlaybackRate(speedTick);
 }
 
 function resetAB() {
@@ -58,12 +58,12 @@ function resetAB() {
 
 function resetSpeed() {
     video.playbackRate = normalPlaybackRate;
-    setCurrentPlaybackRate(normalPlaybackRate);
 }
 
-function setCurrentPlaybackRate(val) {
-    video.playbackRate += val;
-    roundPlaybackRate();
+function changeCurrentPlaybackRate(val) {
+    var newValue = roundTo2Places(video.playbackRate + val);
+    if(newValue < 0.5 || newValue > 2) return;
+    video.playbackRate = newValue;
 }
 
 function insertAfter(newNode, referenceNode) {
@@ -81,7 +81,7 @@ function hideGuiElement() {
 }
 
 function showGuiElement() {
-    guiElement.style.display = 'block';
+    guiElement.style.display = 'inline-block';
 }
 
 function updateGui() {
@@ -175,9 +175,6 @@ function round(num, places) {
 }
 function roundTo2Places(num) {
     return round(num, 2);
-}
-function roundPlaybackRate() {
-    video.playbackRate = roundTo2Places(video.playbackRate);
 }
 
 function changeA(val) {

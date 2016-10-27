@@ -1,6 +1,6 @@
 div#GUITAR_TRAINER_STATE_id {
-    width: 330px;
-    height: 20px;
+    height: 12px;
+    display: inline-block;
     fontSize: 'larger';
     color: #EEE;
     background-color: black;
