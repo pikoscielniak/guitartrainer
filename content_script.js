@@ -7,7 +7,7 @@ const abTick = 0.2;
 
 var currentState = {
     aValue: 0,
-    bValue:  video.duration,
+    bValue: Number.MAX_SAFE_INTEGER,
     playbackRate: normalPlaybackRate
 };
 
@@ -47,7 +47,7 @@ function speedUp() {
 
 function resetAB() {
     currentState.aValue = videoStart;
-    currentState.bValue =  video.duration;
+    currentState.bValue = video.duration;
 }
 
 function resetSpeed() {
