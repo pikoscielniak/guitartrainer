@@ -62,7 +62,7 @@ function resetSpeed() {
 
 function changeCurrentPlaybackRate(val) {
     var newValue = roundTo2Places(video.playbackRate + val);
-    if(newValue < 0.5 || newValue > 2) return;
+    if (newValue < 0.5 || newValue > 2) return;
     video.playbackRate = newValue;
 }
 
@@ -196,11 +196,20 @@ function changeB(val) {
     currentState.bValue = newValue;
 }
 
+function addLoadStartListener() {
+    video.addEventListener('loadstart', () => {
+        resetAB();
+        resetSpeed();
+        updateGui();
+    });
+}
 function init() {
     addKeyEventListener();
     setMessageListener();
     loadSavedState();
     createGuiElement();
+    addLoadStartListener();
 }
 
 init();
+
