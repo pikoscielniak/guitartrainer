@@ -4,8 +4,13 @@
   "description": "This extension allows you to manipulate youtube's video.",
   "version": "1.0",
   "browser_action": {
-    "default_icon": "icon_016.png",
+    "default_icon": "icon.png",
     "default_title": "Guitar trainer (Use keys: QWER,ASD,ZXC)"
+  },
+  "icons": {
+    "16": "icon.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
   },
   "background": {
     "scripts": [

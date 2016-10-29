@@ -14,8 +14,8 @@ function setIcon(icon) {
 }
 
 const iconMapper = {
-    [STATES.ENABLED]: () => setIcon("icon_016.png"),
-    [STATES.DISABLED]: () => setIcon("icon_016_off.png")
+    [STATES.ENABLED]: () => setIcon("icon.png"),
+    [STATES.DISABLED]: () => setIcon("icon_off.png")
 };
 
 const stateChange = {
