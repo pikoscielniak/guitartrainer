@@ -1,11 +1,11 @@
 {
   "manifest_version": 2,
   "name": "Guitar trainer",
-  "description": "This extension allows you to manipulate youtube's video with keyboard's keys. Q - set point A ",
+  "description": "This extension allows you to manipulate YouTube videos with keyboard keys. Q - set point A; W - move point A back by 0.2s; E - move point A forward by 0.2s; A - set point B; S - move point B back by 0.2s; D - move point B forward by 0.2s; Z - decrease playback rate by 5%; X - increasing playback rate, C - return playback rate to normal; R - set points A and B to beginning and end",
   "version": "0.0.1",
   "browser_action": {
     "default_icon": "icon.png",
-    "default_title": "Guitar trainer (Use keys: Q,W,E to control point A, keys: A,S,D to control point B, keys Z,X,C to control speed, key R - resets A and B)"
+    "default_title": "Guitar Trainer (Use keys: Q,W,E to control point A, keys: A,S,D to control point B, keys Z,X,C to control speed, key R - resets A and B)"
   },
   "icons": {
     "16": "icon.png",
