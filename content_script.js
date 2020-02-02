@@ -62,7 +62,7 @@ function resetSpeed() {
 
 function changeCurrentPlaybackRate(val) {
     var newValue = roundTo2Places(video.playbackRate + val);
-    if (newValue < 0.5 || newValue > 2) return;
+    if (newValue < 0.5 || newValue > 3) return;
     video.playbackRate = newValue;
 }
 
